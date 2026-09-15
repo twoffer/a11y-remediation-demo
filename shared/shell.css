@@ -1,0 +1,308 @@
+/*
+ * Styles for the demo shell only (index.html and compare.html).
+ * Sample pages under findings/ never load this file.
+ *
+ * Colour pairs and contrast ratios (WCAG 2.1 AA: text 4.5:1, non-text 3:1).
+ *
+ * Light scheme
+ *   text        #1a1a1a on bg      #ffffff  17.40:1
+ *   muted       #555555 on bg      #ffffff   7.46:1
+ *   link        #0b57d0 on bg      #ffffff   6.39:1
+ *   text        #1a1a1a on surface #f2f2f2  15.55:1
+ *   link        #0b57d0 on surface #f2f2f2   5.70:1
+ *   border      #767676 on bg      #ffffff   4.54:1
+ *   text        #1a1a1a on button  #e6e6e6  13.94:1
+ *   border      #767676 on button  #e6e6e6   3.64:1
+ *   pressed text #ffffff on pressed #1a1a1a  17.40:1
+ *   focus ring  #0b57d0 on bg      #ffffff   6.39:1
+ *
+ * Dark scheme
+ *   text        #e6e6e6 on bg      #121212  15.01:1
+ *   muted       #b3b3b3 on bg      #121212   8.93:1
+ *   link        #8ab4f8 on bg      #121212   8.89:1
+ *   text        #e6e6e6 on surface #1e1e1e  13.36:1
+ *   link        #8ab4f8 on surface #1e1e1e   7.91:1
+ *   border      #8c8c8c on bg      #121212   5.57:1
+ *   text        #e6e6e6 on button  #2a2a2a  11.50:1
+ *   border      #8c8c8c on button  #2a2a2a   4.27:1
+ *   pressed text #121212 on pressed #e6e6e6  15.01:1
+ *   focus ring  #8ab4f8 on bg      #121212   8.89:1
+ *
+ * Forced colours
+ *   None of the pairs above survive; the user agent substitutes the user's
+ *   system palette. See the forced-colors block by .toggle for what that
+ *   costs the pressed state and how it is restated.
+ */
+
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #555555;
+  --link: #0b57d0;
+  --surface: #f2f2f2;
+  --border: #767676;
+  --button-bg: #e6e6e6;
+  --pressed-bg: #1a1a1a;
+  --pressed-text: #ffffff;
+  --focus: #0b57d0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #e6e6e6;
+    --muted: #b3b3b3;
+    --link: #8ab4f8;
+    --surface: #1e1e1e;
+    --border: #8c8c8c;
+    --button-bg: #2a2a2a;
+    --pressed-bg: #e6e6e6;
+    --pressed-text: #121212;
+    --focus: #8ab4f8;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Skip link: visually hidden until focused, then the first thing on screen. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -10rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  color: var(--link);
+  border: 2px solid var(--border);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* Header and navigation */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+}
+
+.site-name {
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Main content */
+main {
+  padding: 1rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Catalog table */
+.catalog {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.catalog caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.catalog th,
+.catalog td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.catalog th {
+  background: var(--surface);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+/* Compare page */
+.compare-controls {
+  margin: 0 0 1rem;
+}
+
+.toggle {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  background: var(--button-bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.toggle[aria-pressed="true"] {
+  background: var(--pressed-bg);
+  color: var(--pressed-text);
+  border-color: var(--pressed-bg);
+}
+
+/*
+ * Forced colours (Windows High Contrast, Firefox and Chromium).
+ *
+ * The user agent discards author colours and substitutes the user's system
+ * palette, so --pressed-bg and --pressed-text never reach the screen: both
+ * toggle states resolve to the same ButtonFace/ButtonText pair and look
+ * identical. Author-declared CSS system colour keywords are exempt from that
+ * substitution, so the pressed state has to be restated in terms of them.
+ * Highlight/HighlightText is the pair the platform itself uses for a selected
+ * or pressed control. border-style is not a colour and is never substituted,
+ * so the doubled border is a second, non-colour cue. Both states carry the
+ * same 3px border width so the toggle does not shift when it is pressed
+ * (2px is too narrow for `double` to draw two lines).
+ *
+ * Highlight is also a plausible substitute for the focus outline, and the
+ * pressed fill would swallow it; CanvasText keeps the ring distinct from it.
+ */
+@media (forced-colors: active) {
+  .toggle {
+    border-width: 3px;
+  }
+
+  .toggle[aria-pressed="true"] {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: HighlightText;
+    border-style: double;
+  }
+
+  .toggle:focus-visible {
+    outline-color: CanvasText;
+  }
+}
+
+.panes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Serial mode: one column, in DOM order (Before, After). */
+.panes.serial {
+  grid-template-columns: 1fr;
+}
+
+/* Narrow viewports stack the panes regardless of the toggle. */
+@media (max-width: 56rem) {
+  .panes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pane h2 {
+  margin-top: 0;
+}
+
+.pane iframe {
+  width: 100%;
+  height: 70vh;
+  min-height: 20rem;
+  border: 1px solid var(--border);
+  background: #ffffff; /* sample pages set their own colours; default to a white canvas */
+}
+
+.pane p {
+  margin: 0.5rem 0 0;
+}
+
+/* Diff: the div is the focusable scroll container; the pre inside it is plain text. */
+.diff {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.diff pre {
+  margin: 0;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Error / status message */
+.notice {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
+}
+
+/* Visually hidden, still read by screen readers (link-text suffixes). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

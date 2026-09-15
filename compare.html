@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compare – Accessibility remediation demo</title>
+  <link rel="stylesheet" href="shared/shell.css">
+  <script src="shared/findings.js"></script>
+  <script src="shared/shell.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Accessibility remediation demo</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+        <li><a href="index.html">Catalog</a></li>
+        <li><a href="https://github.com/twoffer/a11y-remediation-demo">Repository</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <h1 id="page-title">Compare</h1>
+
+    <div id="notice" class="notice" hidden></div>
+
+    <div id="compare-body">
+      <p id="criteria" class="muted"></p>
+      <p><a id="readme-link" href="#">Read the full finding write-up (README on GitHub)</a></p>
+
+      <div class="compare-controls">
+        <button id="mode-toggle" class="toggle" type="button" aria-pressed="false">Serial view (one column)</button>
+      </div>
+
+      <div id="panes" class="panes">
+        <section class="pane" aria-labelledby="before-heading">
+          <h2 id="before-heading">Before</h2>
+          <iframe id="frame-before" title="Before sample page" src="about:blank"></iframe>
+          <p><a id="open-before" href="#">Open before.html on its own</a></p>
+        </section>
+
+        <section class="pane" aria-labelledby="after-heading">
+          <h2 id="after-heading">After</h2>
+          <iframe id="frame-after" title="After sample page" src="about:blank"></iframe>
+          <p><a id="open-after" href="#">Open after.html on its own</a></p>
+        </section>
+      </div>
+
+      <section>
+        <h2 id="diff-heading">Diff</h2>
+        <p id="diff-status" class="muted">Loading diff…</p>
+        <div id="diff-region" class="diff" role="region" aria-labelledby="diff-heading" tabindex="0" hidden>
+          <pre id="diff"></pre>
+        </div>
+      </section>
+
+      <section aria-labelledby="note-heading">
+        <h2 id="note-heading">Client note</h2>
+        <p id="client-note"></p>
+      </section>
+    </div>
+
+    <noscript>
+      <p>This page needs JavaScript to load the sample pages and the diff. The files are plain HTML and text under <a href="https://github.com/twoffer/a11y-remediation-demo/tree/main/findings">findings/</a>.</p>
+    </noscript>
+  </main>
+</body>
+</html>

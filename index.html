@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalog – Accessibility remediation demo</title>
+  <link rel="stylesheet" href="shared/shell.css">
+  <script src="shared/findings.js"></script>
+  <script src="shared/shell.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="site-name" href="index.html">Accessibility remediation demo</a>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
+        <li><a href="index.html" aria-current="page">Catalog</a></li>
+        <li><a href="https://github.com/twoffer/a11y-remediation-demo">Repository</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <h1>Finding classes</h1>
+    <p>Each row is one class of accessibility failure reproduced on a synthetic sample page, with a hand-written fix. Open <strong>Compare</strong> to see before and after side by side with the diff between them, or open either sample page on its own.</p>
+
+    <div class="table-wrap">
+      <table class="catalog">
+        <caption>Finding classes in catalog order</caption>
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Class</th>
+            <th scope="col">WCAG 2.1 AA criteria</th>
+            <th scope="col">Compare</th>
+            <th scope="col">Before</th>
+            <th scope="col">After</th>
+            <th scope="col">Write-up</th>
+          </tr>
+        </thead>
+        <tbody id="catalog-body"></tbody>
+      </table>
+    </div>
+
+    <noscript>
+      <p>This catalog is built from <code>shared/findings.js</code> and needs JavaScript. The sample pages themselves are plain files under <a href="https://github.com/twoffer/a11y-remediation-demo/tree/main/findings">findings/</a>.</p>
+    </noscript>
+  </main>
+</body>
+</html>
