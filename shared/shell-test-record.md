@@ -88,11 +88,15 @@ Accessibility panel → Check for issues → Contrast reports nothing.
 | F3  | toggle's pressed and not-pressed states look different                                                       | n/a        | [x]                        |
 | F4  | edges visible: table cell borders on the index; pane frames and, with a diff loaded, the diff box on compare | [x]        | [x]                        |
 | F5  | text inside the sample-page iframes readable                                                                 | n/a        | [x]                        |
+| F6  | toggle under a resting pointer: pressed and not-pressed still look different                                 | n/a        | [x]                        |
+| F7  | in Chrome: toggle label readable in both states, with and without the focus ring                             | n/a        | [x]                        |
+
+F7 is the only check run in Chrome, on Chrome 152.0.7977.84. Every other row in this record was checked in Firefox only.
 
 ## GitHub Pages (after committing)
 | #   | URL                                                   | Confirm                                                            | Result |
 | --- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------ |
-| G1  | `index.html`                                          | loads styled; every catalog link (compare, before, after) resolves | [ ]    |
-| G2  | `compare.html?f=form-labels`                          | frames, README link, and diff load                                 | [ ]    |
-| G3  | `compare.html?f=contrast`, `compare.html?f=image-alt` | frames load                                                        | [ ]    |
-| G4  | `compare.html`, `compare.html?f=nope`                 | notices show; the catalog link resolves                            | [ ]    |
+| G1  | `index.html`                                          | loads styled; every catalog link (compare, before, after) resolves | [x]    |
+| G2  | `compare.html?f=form-labels`                          | frames, README link, and diff load                                 | [x]    |
+| G3  | `compare.html?f=contrast`, `compare.html?f=image-alt` | frames load                                                        | [x]    |
+| G4  | `compare.html`, `compare.html?f=nope`                 | notices show; the catalog link resolves                            | [x]    |

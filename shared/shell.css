@@ -209,18 +209,32 @@ h2 {
  * palette, so --pressed-bg and --pressed-text never reach the screen: both
  * toggle states resolve to the same ButtonFace/ButtonText pair and look
  * identical. Author-declared CSS system colour keywords are exempt from that
- * substitution, so the pressed state has to be restated in terms of them.
+ * substitution, so both states are restated in terms of them.
  * Highlight/HighlightText is the pair the platform itself uses for a selected
  * or pressed control. border-style is not a colour and is never substituted,
  * so the doubled border is a second, non-colour cue. Both states carry the
  * same 3px border width so the toggle does not shift when it is pressed
  * (2px is too narrow for `double` to draw two lines).
  *
+ * System keywords alone are not enough. A discarded author colour falls back
+ * to the user agent's own button styles, including its :hover colours, which
+ * in Firefox can match the pressed fill: under a resting pointer both states
+ * look pressed. Chromium paints a Canvas-coloured backplate behind text, and
+ * where HighlightText is close to Canvas the pressed label disappears.
+ * forced-color-adjust: none opts the toggle out of both. It is safe here only
+ * because every colour the toggle uses in this block is a system keyword, so
+ * the user's palette still applies; the cost is the user agent's hover
+ * styling on this one control.
+ *
  * Highlight is also a plausible substitute for the focus outline, and the
  * pressed fill would swallow it; CanvasText keeps the ring distinct from it.
  */
 @media (forced-colors: active) {
   .toggle {
+    forced-color-adjust: none;
+    background-color: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonText;
     border-width: 3px;
   }
 
