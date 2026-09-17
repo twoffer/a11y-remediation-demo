@@ -4,6 +4,7 @@
 **WCAG 2.1 AA SC:** 1.3.1 Info and Relationships; 3.3.2 Labels or Instructions; 4.1.2 Name, Role, Value
 **Root cause:** …
 **Fix:** …
+**Sample styling:** … (what this pair's embedded CSS does, and whether it is part of the failure; the convention is in [Sample page styles](../../shared/README.md#sample-page-styles))
 
 ## Verification
 | Check | Before | After |

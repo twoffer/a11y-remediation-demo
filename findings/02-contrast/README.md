@@ -4,6 +4,7 @@
 **WCAG 2.1 AA SC:** 1.4.3 Contrast (Minimum); 1.4.11 Non-text Contrast
 **Root cause:** …
 **Fix:** …
+**Sample styling:** … (what this pair's embedded CSS does, and whether it is part of the failure; the convention is in [Sample page styles](../../shared/README.md#sample-page-styles))
 
 ## Verification
 | Check | Before | After |

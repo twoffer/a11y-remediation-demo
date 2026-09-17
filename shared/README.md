@@ -25,3 +25,19 @@ Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 
 ## Colour pairs
 Every text and non-text colour pair and its contrast ratio is listed in the comment at the top of `shell.css`, for both schemes. Firefox's Accessibility Inspector (Check for issues → Contrast) confirms them in-page.
+
+## Sample page styles
+Sample pages under `findings/` never load `shell.css`. Each `before.html` and `after.html` carries its own CSS in a single `<style>` block in `<head>`; a pair shares no stylesheet with each other, with another class, or with the shell.
+
+Why the styles are embedded rather than shared:
+
+- `diff.txt` is `git diff --no-index before.html after.html` and contains nothing else. A fix that lived in an external stylesheet would not appear in the diff at all, and for the contrast, focus, and structure classes the CSS *is* the remediation.
+- One stylesheet cannot hold both the failure and the fix for the same selector. Splitting them into two class names would turn the demonstrated fix into a class swap rather than the change an audit asks for.
+- Each sample has to fail or pass axe on its own. A stylesheet shared across classes means an edit made for one class can change another class's result and force re-verification of pages nobody touched.
+
+Conventions for the block:
+
+- A `<style>` block, not `style` attributes, unless an inline style is itself the reproduced failure. Inline styles cannot express `:focus-visible`, media queries, or `forced-colors`.
+- Keep the same selectors in the same order in both files, so the diff is a tight hunk on the declarations that changed.
+- Set `background-color` and `color` explicitly on `body` and do not add a `prefers-color-scheme` block. A class that states a contrast ratio has to be measured against one stated pair; the shell imposes nothing on iframe content, so the scheme is the sample page's own choice.
+- Keep it to what the class needs: presentation only, where CSS is not part of the mechanism under test.
