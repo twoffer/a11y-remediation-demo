@@ -142,8 +142,14 @@
     document.getElementById("criteria").textContent =
       "WCAG 2.1 AA: " + criteriaText(finding);
 
-    var readme = document.getElementById("readme-link");
-    readme.href = readmeUrl(finding);
+    /* Two links to the class README: one above the panes, one after the
+       condensed client note. Same target, different link text. */
+    ["readme-link", "note-readme-link"].forEach(function (id) {
+      var link = document.getElementById(id);
+      if (link) {
+        link.href = readmeUrl(finding);
+      }
+    });
 
     ["before", "after"].forEach(function (which) {
       var frame = document.getElementById("frame-" + which);

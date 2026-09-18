@@ -12,8 +12,15 @@
  *   folder      directory under findings/ (NN-slug, never renamed)
  *   title       display name
  *   sc          WCAG 2.1 AA success criteria: { id, name }
- *   clientNote  one line, hand-written; leave "" until written.
- *               The class README is the canonical record.
+ *   clientNote  one sentence for the compare page, hand-written: a shorter
+ *               version of the class README's "## Client note", written
+ *               after it and asserting nothing it does not. Plain text only
+ *               — it is inserted with textContent, so backticks and links
+ *               render literally. Leave "" until the README note exists;
+ *               the compare page then shows "Not written yet." and its link
+ *               to the README. The README is the canonical record; the
+ *               convention is "Client note (compare page)" in
+ *               shared/README.md.
  */
 window.A11Y_DEMO = {
   siteTitle: "Accessibility remediation demo",

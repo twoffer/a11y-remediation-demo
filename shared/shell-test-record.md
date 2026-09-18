@@ -34,7 +34,7 @@ Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 | K1  | `index.html`                    | first Tab shows the skip link top left; Enter moves focus into main; next Tab lands on the first catalog link                      | [x]   | [x]  |
 | K2  | `index.html`                    | without the skip link: site name, Catalog, Repository, then catalog links in row order                                             | [x]   | [x]  |
 | K3  | `index.html`                    | ring visible at every stop; Shift+Tab walks back in reverse; no stop on plain text or a heading; no trap                           | [x]   | [x]  |
-| K4  | `compare.html?f=form-labels`    | order: skip link, site name, Catalog, Repository, README link, toggle, "Open before.html on its own", "Open after.html on its own" | [x]   | [x]  |
+| K4  | `compare.html?f=form-labels`    | order: skip link, site name, Catalog, Repository, README link, toggle, "Open before.html on its own", "Open after.html on its own", "Full client note and mechanism alternatives" | [x]   | [x]  |
 | K5  | `compare.html?f=form-labels`    | Enter on the skip link moves focus into main; focus not lost                                                                       | [x]   | [x]  |
 | K6  | `compare.html?f=form-labels`    | Space toggles the button; pressed look changes; focus stays on the button                                                          | [x]   | [x]  |
 | K7  | `compare.html?f=form-labels`    | Enter toggles the button; pressed look changes; focus stays on the button                                                          | [x]   | [x]  |

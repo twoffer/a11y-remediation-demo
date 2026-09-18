@@ -18,13 +18,28 @@ Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 | Check           | index.html                                                                                                                | compare.html                                                                                                            |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | axe DevTools    | issues: 0 (2 scans)                                                                                                       | issues: 0 (8 scans)                                                                                                     |
-| Keyboard only   | stops: 16; ring: visible; trap: none                                                                                      | stops: 10 (8 controls plus the two iframes); ring: visible; trap: none                                                  |
+| Keyboard only   | stops: 16; ring: visible; trap: none                                                                                      | stops: 11 (9 controls plus the two iframes); ring: visible; trap: none                                                  |
 | NVDA + Firefox  | catalog link: "Compare  column 4  Compare  – Form labels  visited  link"                                                  | toggle: "toggle button  not pressed  Serial view (one column)" → "pressed"                                              |
 | Reflow and zoom | 320px: no sideways scroll outside the table box, no clipping; 200%: no sideways scroll outside the table box, no clipping | 320px: no sideways scroll outside the diff box, no clipping; 200%: no sideways scroll outside the diff box, no clipping |
 | Forced colours  | rings, skip link, table edges visible                                                                                     | rings, skip link, toggle states, pane edges, diff edges, iframe text visible                                            |
 
 ## Colour pairs
 Every text and non-text colour pair and its contrast ratio is listed in the comment at the top of `shell.css`, for both schemes. Firefox's Accessibility Inspector (Check for issues → Contrast) confirms them in-page.
+
+## Client note (compare page)
+The client note exists twice, on purpose. The class README's `## Client note` is the canonical record and may run to three sentences plus rougher notes on mechanism alternatives. The `clientNote` field in `findings.js` is a separate, shorter version written for the compare page, where the note is the last section and is read by someone scanning a demo rather than reading a write-up.
+
+Two texts rather than one extracted from the other, because the README's note cannot be cut to length mechanically: its first paragraph is already several sentences, and where the boundary should fall differs by class.
+
+Conventions for the manifest field:
+
+- One sentence. If it needs two, the second belongs in the README instead.
+- A shorter version of the README note, never a claim the README does not make. The mechanism is settled in the README's *Root cause* and *Fix*; this line says the same thing in less space.
+- Plain text. `shell.js` inserts it with `textContent`, so backticks, links, and any other markdown render as literal characters. Name an attribute in prose (`the id attribute`) rather than marking it up.
+- Written after the README note, for the same reason the README's note is filled last: it depends on which mechanism the fix settled on.
+- Leave it `""` until the README note exists. The compare page shows a muted "Not written yet." in its place, and its link to the README still resolves.
+
+The README's note is reachable from the compare page by the link after the note section, which points at the same README as the link above the panes and differs from it in link text.
 
 ## Sample page styles
 Sample pages under `findings/` never load `shell.css`. Each `before.html` and `after.html` carries its own CSS in a single `<style>` block in `<head>`; a pair shares no stylesheet with each other, with another class, or with the shell.
