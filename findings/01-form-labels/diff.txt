@@ -1,0 +1,22 @@
+diff --git a/before.html b/after.html
+index ed6aa17..95107f0 100644
+--- a/before.html
++++ b/after.html
+@@ -105,12 +105,14 @@
+         <input type="email" id="mail" name="user_email" autocomplete="email">
+       </div>
+       <div>
+-        <input type="tel" id="phone" name="user_phone" autocomplete="tel" placeholder="(123) 456-7890">
++        <label for="phone">Phone number:</label>
++        <input type="tel" id="phone" name="user_phone" autocomplete="tel" aria-describedby="phone_desc">
++        <div id="phone_desc">e.g. (123) 456-7890</div>
+       </div>
+     </fieldset>
+     <div>
+-      Message:
+-      <textarea name="user_message" rows="4"></textarea>
++      <label for="message">Message:</label>
++      <textarea id="message" name="user_message" rows="4"></textarea>
+     </div>
+     <div>
+       <button type="submit">Submit</button>

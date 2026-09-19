@@ -35,7 +35,7 @@ window.A11Y_DEMO = {
         { id: "3.3.2", name: "Labels or Instructions" },
         { id: "4.1.2", name: "Name, Role, Value" }
       ],
-      clientNote: ""
+      clientNote: "The fix depends on each field having an id that is unique on the page, so whatever generates these fields has to assign one per instance."
     },
     {
       slug: "contrast",

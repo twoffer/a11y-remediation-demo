@@ -3,10 +3,120 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Form labels</title>
+  <title>Form Labels</title>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    :root {
+      color-scheme: light;
+      --foreground-color: #222222;
+      --background-color: #f7f7f7;
+      --row-gap: 1rem;
+      --field-padding-x: 0.8em;
+      --field-padding-y: 0.4em;
+      --field-border-color: #767676;
+      --field-background-color: #ffffff;
+      --placeholder-color: #707070;
+    }
+    body {
+      font: 1.2rem/1.5 system-ui, sans-serif;
+      margin: 0 auto;
+      padding: 1.2rem;
+      max-width: 35rem;
+      color: var(--foreground-color);
+      background-color: var(--background-color);
+    }
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    button {
+      line-height: 1.2;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--field-border-color);
+      padding: var(--field-padding-y) var(--field-padding-x);
+      color: var(--foreground-color);
+      background-color: var(--field-background-color);
+    }
+    button {
+      border: 1px solid var(--field-border-color);
+      padding: var(--field-padding-y) var(--field-padding-x);
+    }
+    textarea {
+      resize: vertical;
+    }
+    form {
+      display: grid;
+      gap: var(--row-gap);
+    }
+    form > * {
+      margin: 0;
+    }
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--row-gap);
+    }
+    legend {
+      font-weight: bold;
+      padding-inline: 0;
+      margin-bottom: var(--row-gap);
+    }
+    input::placeholder {
+      color: var(--placeholder-color);
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
-  <h1>Form labels</h1>
-  <!-- Sample page. The reproduced failure goes here; hand-written. -->
+  <h1>Form Labels</h1>
+  <form action="#">
+    <h2>Contact Us</h2>
+    <p>Enter your name, email, and message in the form below.</p>
+    <fieldset>
+      <legend>Contact information</legend>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name" autocomplete="name">
+      </div>
+      <div>
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="user_email" autocomplete="email">
+      </div>
+      <div>
+        <label for="phone">Phone number:</label>
+        <input type="tel" id="phone" name="user_phone" autocomplete="tel" aria-describedby="phone_desc">
+        <div id="phone_desc">e.g. (123) 456-7890</div>
+      </div>
+    </fieldset>
+    <div>
+      <label for="message">Message:</label>
+      <textarea id="message" name="user_message" rows="4"></textarea>
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 </body>
 </html>
