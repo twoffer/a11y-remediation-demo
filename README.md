@@ -6,8 +6,9 @@ Live site: https://twoffer.github.io/a11y-remediation-demo/
 
 ## What this is
 
-Each finding class reproduces one *class* of failure that web accessibility audits commonly flag, on a small sample page written for this demo, and then shows the hand-written fix. The classes and their order follow the categories reported most often in the [WebAIM Million](https://webaim.org/projects/million/), a yearly survey of the top one million home pages.
-<!-- Audit source: if the class set is later mapped to a specific audit, name the source here. -->
+Each finding class reproduces one *class* of failure that web accessibility audits commonly flag, on a small sample page written for this demo, and then shows the hand-written fix. Most of the classes are the categories reported most often in the [WebAIM Million](https://webaim.org/projects/million/), a yearly survey of the top one million home pages; two more were added from the findings of a real audit, and one WebAIM category the audit did not raise was dropped.
+
+The catalog order is remediation priority, not frequency. It follows the severity ranking that the real audit gave to its findings, with one class raised above more severe ones because its share of the findings was large and the failures in it were not borderline. Where a class sits is therefore a judgement about priority fix ordering, and the demo says so rather than implying the ranking is the exact one given by the audit. The catalog grows as each class is written, so it does not yet show every class in the set.
 
 - The sample pages are synthetic. They were written for this demo and do not quote, copy, or resemble any real site.
 - The fixes are hand-written.

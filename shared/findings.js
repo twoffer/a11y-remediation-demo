@@ -7,6 +7,13 @@
  * entry (leave the folder in place; folder numbers are stable identifiers
  * and are never renamed).
  *
+ * The order is remediation priority, not folder order and not frequency,
+ * which is why 09 sits second and 02 sits below it. README.md, "What this
+ * is", states the rule the order follows. Classes appear here once they
+ * are scaffolded, so the list grows in build order and reads in priority
+ * order; the gaps are classes not yet scaffolded, not classes that were
+ * cut.
+ *
  * Fields:
  *   slug        query-string key used by compare.html?f=<slug>
  *   folder      directory under findings/ (NN-slug, never renamed)
@@ -36,6 +43,17 @@ window.A11Y_DEMO = {
         { id: "4.1.2", name: "Name, Role, Value" }
       ],
       clientNote: "The fix depends on each field having an id that is unique on the page, so whatever generates these fields has to assign one per instance."
+    },
+    {
+      slug: "errors-status",
+      folder: "09-errors-status",
+      title: "Errors and status messages",
+      sc: [
+        { id: "3.3.1", name: "Error Identification" },
+        { id: "4.1.3", name: "Status Messages" },
+        { id: "1.4.1", name: "Use of Color" }
+      ],
+      clientNote: ""
     },
     {
       slug: "contrast",

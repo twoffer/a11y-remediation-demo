@@ -42,11 +42,8 @@
   /* ---------- Catalog (index.html) ---------- */
 
   function renderCatalog(tbody) {
-    DEMO.findings.forEach(function (f, i) {
+    DEMO.findings.forEach(function (f) {
       var tr = el("tr");
-      var number = f.folder.split("-")[0];
-
-      tr.appendChild(el("td", null, number));
 
       var titleCell = el("th", { scope: "row" });
       titleCell.textContent = f.title;

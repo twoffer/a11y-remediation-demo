@@ -2,7 +2,9 @@
 
 The completed checklist behind the results table in [README.md](README.md). Each row is one check that was run against the shell; the "Coverage" section of that README summarises them.
 
-Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10.
+Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10.
+
+An `e.g.` in a Confirm cell shows the *shape* of what a screen reader announces, not captured output — it says what to listen for, and is written in ordinary prose. The verbatim transcripts are in the Results table in [README.md](README.md), quoted from NVDA's Speech Viewer with its own word order and double-space token separators intact. Nothing in this file is a transcript, so nothing in it should be read as one.
 
 ## Setup
 | #   | Item                                                                                 | Result |
@@ -31,8 +33,8 @@ Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 ## Keyboard only
 | #   | Page / state                    | Confirm                                                                                                                            | Light | Dark |
 | --- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----- | ---- |
-| K1  | `index.html`                    | first Tab shows the skip link top left; Enter moves focus into main; next Tab lands on the first catalog link                      | [x]   | [x]  |
-| K2  | `index.html`                    | without the skip link: site name, Catalog, Repository, then catalog links in row order                                             | [x]   | [x]  |
+| K1  | `index.html`                    | first Tab shows the skip link top left; Enter moves focus into main; next Tab lands on the repository README link in the intro paragraph                      | [x]   | [x]  |
+| K2  | `index.html`                    | without the skip link: site name, Catalog, Repository, the intro paragraph's repository README link, then catalog links in row order                                             | [x]   | [x]  |
 | K3  | `index.html`                    | ring visible at every stop; Shift+Tab walks back in reverse; no stop on plain text or a heading; no trap                           | [x]   | [x]  |
 | K4  | `compare.html?f=form-labels`    | order: skip link, site name, Catalog, Repository, README link, toggle, "Open before.html on its own", "Open after.html on its own", "Full client note and mechanism alternatives" | [x]   | [x]  |
 | K5  | `compare.html?f=form-labels`    | Enter on the skip link moves focus into main; focus not lost                                                                       | [x]   | [x]  |
@@ -49,7 +51,7 @@ Checked on 9/15/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 | N3  | `index.html`                    | Insert+F7 → Headings: one H1, "Finding classes"                                                                                                                                                                                                                  | [x]    |
 | N4  | `index.html`                    | Insert+F7 → Links: every name unique, e.g. "Compare – Form labels"                                                                                                                                                                                               | [x]    |
 | N5  | `index.html`                    | skip link reads "Skip to main content, link"; Enter announces the main landmark and reads on from the H1; Insert+Up confirms the browse caret is on the H1, so Down arrow moves to the next line                                                                 | [x]    |
-| N6  | `index.html`                    | T reaches the table; Ctrl+Alt+Right along a row announces the column header and column number, e.g. "Compare, column 4, Compare – Form labels, link"; Ctrl+Alt+Down announces the row header and row number, e.g. "Form labels, row 3", confirming `scope="row"` | [x]    |
+| N6  | `index.html`                    | T reaches the table; Ctrl+Alt+Right along a row announces the column header and column number, e.g. "Compare, column 3, Compare – Form labels, link"; Ctrl+Alt+Down announces the row header and row number, e.g. "Form labels, row 2", confirming `scope="row"` | [x]    |
 | N7  | `compare.html?f=form-labels`    | on load and with Insert+T, the title names the class and the site                                                                                                                                                                                                | [x]    |
 | N8  | `compare.html?f=form-labels`    | Insert+F7 → Landmarks: banner, "Site" navigation, main, and the Before, After, and Client note regions                                                                                                                                                           | [x]    |
 | N9  | `compare.html?f=form-labels`    | Insert+F7 → Headings: one H1, then H2s Before, After, Diff, Client note in order                                                                                                                                                                                 | [x]    |
@@ -96,7 +98,7 @@ F7 is the only check run in Chrome, on Chrome 152.0.7977.84. Every other row in 
 ## GitHub Pages (after committing)
 | #   | URL                                                   | Confirm                                                            | Result |
 | --- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------ |
-| G1  | `index.html`                                          | loads styled; every catalog link (compare, before, after) resolves | [x]    |
+| G1  | `index.html`                                          | loads styled; every catalog link (compare, before, after) resolves; the intro paragraph's repository README link resolves to the README's "What this is" section | [x]    |
 | G2  | `compare.html?f=form-labels`                          | frames, README link, and diff load                                 | [x]    |
 | G3  | `compare.html?f=contrast`, `compare.html?f=image-alt` | frames load                                                        | [x]    |
 | G4  | `compare.html`, `compare.html?f=nope`                 | notices show; the catalog link resolves                            | [x]    |
