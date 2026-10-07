@@ -1,0 +1,63 @@
+diff --git a/before.html b/after.html
+index 38b0b56..5b2a86b 100644
+--- a/before.html
++++ b/after.html
+@@ -66,9 +66,13 @@
+     form > * {
+       margin: 0;
+     }
+-    .is-invalid {
++    input[aria-invalid="true"] {
+       border-color: var(--error-color);
+     }
++    #node_alias_error {
++      font-weight: bold;
++      color: var(--error-color);
++    }
+   </style>
+ </head>
+ <body>
+@@ -77,33 +81,36 @@
+     <h2>Application settings</h2>
+     <div>
+       <label for="node_alias">Node alias:</label>
+-      <input type="text" id="node_alias" name="node_alias" aria-describedby="node_alias_desc">
++      <input type="text" id="node_alias" name="node_alias" aria-describedby="node_alias_desc node_alias_error">
+       <div id="node_alias_desc">Use only letters and numbers, with no spaces or symbols</div>
++      <div id="node_alias_error" aria-live="assertive" aria-atomic="true"></div>
+     </div>
+     <div>
+       <button type="submit">Save</button>
+     </div>
++    <div id="form_status" aria-live="polite" aria-atomic="true"></div>
+   </form>
+ 
+   <script type="module">
+     const form = document.querySelector("form");
+     const nodeAlias = document.querySelector("#node_alias");
++    const nodeAliasError = document.querySelector("#node_alias_error");
++    const formStatus = document.querySelector("#form_status");
+ 
+     form.addEventListener("submit", (e) => {
+       e.preventDefault();
+-      document.querySelector("#form_status")?.remove();
+-      nodeAlias.classList.remove("is-invalid");
++      formStatus.textContent = "";
++      nodeAlias.removeAttribute("aria-invalid");
++      nodeAliasError.textContent = "";
+ 
+       const trimmedAlias = nodeAlias.value.trim();
+       if (!/^[a-zA-Z0-9]*$/.test(trimmedAlias)) {
+-        nodeAlias.classList.add("is-invalid");
++        nodeAlias.setAttribute("aria-invalid", "true");
++        nodeAliasError.textContent = "Error: Node alias must only include letters and numbers";
+         return;
+       }
+ 
+-      const formStatus = document.createElement("div");
+-      formStatus.id = "form_status";
+       formStatus.textContent = "Settings saved.";
+-      form.append(formStatus);
+       nodeAlias.value = trimmedAlias;
+     });
+   </script>

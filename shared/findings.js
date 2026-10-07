@@ -53,7 +53,7 @@ window.A11Y_DEMO = {
         { id: "4.1.3", name: "Status Messages" },
         { id: "1.4.1", name: "Use of Color" }
       ],
-      clientNote: ""
+      clientNote: "With errors in more than one field, per-field live regions can announce at once, so on a failed submit, move focus to an error summary that links to each invalid field."
     },
     {
       slug: "contrast",

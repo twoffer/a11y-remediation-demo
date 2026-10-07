@@ -4,9 +4,108 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Errors and status messages</title>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    :root {
+      color-scheme: light;
+      --foreground-color: #222222;
+      --background-color: #f7f7f7;
+      --error-color: #c00000;
+      --row-gap: 1rem;
+      --field-padding-x: 0.8em;
+      --field-padding-y: 0.4em;
+      --field-border-color: #767676;
+      --field-background-color: #ffffff;
+    }
+    body {
+      font: 1.2rem/1.5 system-ui, sans-serif;
+      margin: 0 auto;
+      padding: 1.2rem;
+      max-width: 35rem;
+      color: var(--foreground-color);
+      background-color: var(--background-color);
+    }
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    button {
+      line-height: 1.2;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    input {
+      width: 100%;
+      border: 1px solid var(--field-border-color);
+      padding: var(--field-padding-y) var(--field-padding-x);
+      color: var(--foreground-color);
+      background-color: var(--field-background-color);
+    }
+    button {
+      border: 1px solid var(--field-border-color);
+      padding: var(--field-padding-y) var(--field-padding-x);
+    }
+    form {
+      display: grid;
+      gap: var(--row-gap);
+    }
+    form > * {
+      margin: 0;
+    }
+    .is-invalid {
+      border-color: var(--error-color);
+    }
+  </style>
 </head>
 <body>
   <h1>Errors and status messages</h1>
-  <!-- Sample page. The reproduced failure goes here; hand-written. -->
+  <form action="#" novalidate>
+    <h2>Application settings</h2>
+    <div>
+      <label for="node_alias">Node alias:</label>
+      <input type="text" id="node_alias" name="node_alias" aria-describedby="node_alias_desc">
+      <div id="node_alias_desc">Use only letters and numbers, with no spaces or symbols</div>
+    </div>
+    <div>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+
+  <script type="module">
+    const form = document.querySelector("form");
+    const nodeAlias = document.querySelector("#node_alias");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      document.querySelector("#form_status")?.remove();
+      nodeAlias.classList.remove("is-invalid");
+
+      const trimmedAlias = nodeAlias.value.trim();
+      if (!/^[a-zA-Z0-9]*$/.test(trimmedAlias)) {
+        nodeAlias.classList.add("is-invalid");
+        return;
+      }
+
+      const formStatus = document.createElement("div");
+      formStatus.id = "form_status";
+      formStatus.textContent = "Settings saved.";
+      form.append(formStatus);
+      nodeAlias.value = trimmedAlias;
+    });
+  </script>
 </body>
 </html>

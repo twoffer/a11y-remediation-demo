@@ -1,26 +1,50 @@
 # 09 — Errors and status messages
 
-**Finding class:** …
+**Finding class:** Input errors signaled without text, by a color change alone, and status messages inserted into the page with nothing that tells assistive technology they arrived.
+
 **WCAG 2.1 AA SC:** 3.3.1 Error Identification; 4.1.3 Status Messages; 1.4.1 Use of Color
-**Root cause:** …
-**Fix:** …
-**Sample styling:** … (what this pair's embedded CSS does, and whether it is part of the failure; the convention is in [Sample page styles](../../shared/README.md#sample-page-styles))
+
+**Root cause:** On a failed save, the script adds a CSS styling class to the node alias input, and the class changes only the border color (makes it red). A CSS class is not part of the accessibility tree, so the field's name, description, and state are the same before and after the failed submit, and no error text exists anywhere on the page (3.3.1); the only visible change is the border color (1.4.1). On a successful save, the script constructs a new confirmation element and appends it to the end of the form. The element has no role or live-region property, so its arrival is an ordinary DOM change that assistive technology is not told about (4.1.3).
+
+**Fix:**
+
+Two separate ARIA live regions announce the error and the confirmation. Both containers are present at page load and only their text content changes, because a screen reader tracks a live region it already knows about; an element inserted together with its message is often not announced, even if it carries `aria-live`.
+
+The error container uses `aria-live="assertive"`, which asks the screen reader to present the change immediately rather than at the next pause in speech, because the save did not happen and the user has to correct the field before it can. `aria-atomic="true"` makes the screen reader read the whole container whenever any part of it changes. The error container is referenced by the node alias field's `aria-describedby` attribute after the hint text, which is the same display order used on the page. The input gets `aria-invalid="true"` on a failed submit, and this attribute is removed at the start of every submit and set again only if validation fails, so screen readers track the invalid state. The error text describes the nature of the error, and the `aria-invalid` state and `aria-describedby` pointer identify the error on the node alias input field, which address 3.3.1. The visible error text starting with "Error:" also provides an alternate way of conveying the meaning of the issue other than through the input field's border color change, so 1.4.1 is satisfied.
+
+The script does not move focus on a failed submit, so the error is a status message under 4.1.3: it reports the result of an action without taking focus. The assertive live region announces it wherever focus is. When focus next reaches the field, its invalid state and the error description are announced with it.
+
+The status container is an element at the end of the form that is in the page from load. It uses `aria-live="polite"`, which waits for the next pause in speech, because a confirmation asks nothing of the user and should not cut across what is being read; `aria-atomic="true"` has the same effect as on the error container. This element conveys the confirmation message, which addresses the 4.1.3 problem that was originally present in the Before page's unannounced confirmation.
+
+**Sample styling:** The CSS styling is part of the failure for 1.4.1 only: the `.is-invalid` rule changes nothing but the border color and is the color-only cue. The rest of the CSS block is presentation and identical in both files. In the After, the same declaration is selected by `input[aria-invalid="true"]`, so the border and the invalid state cannot disagree, and one rule is added for the error text (bold, same red as the border color). The convention is in [Sample page styles](../../shared/README.md#sample-page-styles).
 
 ## Verification
-| Check | Before | After |
-|---|---|---|
-| axe DevTools | rule IDs, or n/a with a reason: … | clean / residual / n/a with a reason: … |
-| Keyboard only | … | … |
-| NVDA + Firefox | announced: "…" | announced: "…" |
+| Check          | Before                                                                                                                                                                                                                                                                    | After                                                                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| axe DevTools   | clean - full-page scan at load, after a failed save, and after a successful save, Firefox add-on 4.10.3; not machine-detectable: no axe rule tests whether an error is described in text, whether an error cue is color-only, or whether an inserted message is announced | clean - same scans                                                                                                                                                                                           |
+| Keyboard only  | Tab through 2 stops in DOM order (Node alias field -> Save button), focus ring visible, no trap                                                                                                                                                                           | Same 2 stops, same order, same results; error and status live regions are not focusable and do not add stops                                                                                                 |
+| NVDA + Firefox | All three paths, invalid input: input border turned red but no error was announced. All three paths, valid input: "Settings saved." appeared on screen but was not announced.                                                                                             | Save from the keyboard, invalid input: `"Error: Node alias must only include letters and numbers"`. Save from the keyboard, valid input: `"Settings saved."`. Enter in the field and Save clicked: see Note. |
+
+**Note:** Three activation paths were verified in both pages: pressing Enter while focused on the field, using the keyboard to move to the Save button and activate it, and using the mouse to click the Save button. In the After, clicking Save announced the button as it took focus, then the same message as the keyboard path: `"Save  button"`, then `"Error: Node alias must only include letters and numbers"` or `"Settings saved."`. Pressing Enter in the field with invalid input in the After announced three things in sequence: the live region, `"Error: Node alias must only include letters and numbers"`; the new state, `"invalid entry"`; and the changed description, `"Use only letters and numbers, with no spaces or symbols Error: Node alias must only include letters and numbers"` (the description is computed from both referenced elements, and the error element now has text). The error container is both the live region and part of the field's description, so when focus is on the field, a text update is reported both as a live-region change and as a changed description, with the new invalid state between them. Once the field was invalid, subsequent submissions with the same invalid input announced only the error: `"Error: Node alias must only include letters and numbers"`. Pressing Enter in the field with valid input and no earlier error announced only the status region: `"Settings saved."`. Pressing Enter in the field with valid input after a previous invalid submit announced two things in sequence: the status region, `"Settings saved."`; and the changed description, now the hint text alone, `"Use only letters and numbers, with no spaces or symbols"`.
+
+Returning to the field after a failed save, by Shift+Tab from the Save button, announced the invalid state and the error with the field: `"Node alias:  edit  invalid entry  has auto complete  Use only letters and numbers, with no spaces or symbols Error: Node alias must only include letters and numbers  selected ab c"`. The same step in the Before announced neither: `"Node alias:  edit  has auto complete  Use only letters and numbers, with no spaces or symbols  selected ab c"`.
 
 ## Client note
-…
+When more than one field has an error, per-field live regions can announce at once. On a failed submit, move focus to an error summary that links to each invalid field, and keep `aria-invalid` and `aria-describedby` on the fields so each error is announced again when its field gets focus.
+
+The error summary is described in the GOV.UK Design System's Error summary component: https://design-system.service.gov.uk/components/error-summary/. The summary links give direct navigation to each invalid field rather than searching or tabbing through the form. Smaller forms can skip the summary and move focus directly to the invalid field; that approach does not need per-field live regions either. This After page instead keeps focus where it is and relies on the field's live region; the cost is recorded under the verification table: on the first failed submit with focus already on the field, the error is announced more than once.
+
+The border rule already selects on `aria-invalid` and works for any number of fields unchanged. The error-text rule is selected by one ID here and has to become a class once there is more than one field. The attribute and live-region text resets at the start of each submit need to change together; they belong in one place, such as a helper function, so they cannot drift apart.
+
+The containers use `aria-live` and `aria-atomic` directly rather than `role="alert"` or `role="status"`. The live-region behavior is the same: `role="alert"` implies `aria-live="assertive"` and `aria-atomic="true"`, and `role="status"` implies the polite equivalent. The difference is that the `role` attribute also replaces the container's default role in the accessibility tree with `alert` or `status`, which the screen reader can speak; `aria-live` and `aria-atomic` are exposed as properties and leave the default role unchanged. A separate pass with `role="alert"` in NVDA + Firefox announced `"Alert"` before every error message, which adds verbosity to a message that already starts with "Error:".
 
 ## Reading log
 - WCAG Understanding: https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html · https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html · https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html
 - web.dev Learn Accessibility, Forms: https://web.dev/learn/accessibility/forms
 - web.dev Learn Accessibility, JavaScript (live regions): https://web.dev/learn/accessibility/javascript
 - W3C WAI Tutorials, Forms — User Notifications: https://www.w3.org/WAI/tutorials/forms/notifications/
-- MDN: `aria-invalid`, `aria-describedby`, and ARIA live regions — …
-- APG (widgets only): https://www.w3.org/WAI/ARIA/apg/patterns/alert/
-- Deque rule page(s): …
+- MDN: `aria-invalid`, `aria-describedby`, and ARIA live regions — https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid · https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby · https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions
+- GOV.UK Design System, Error message component: https://design-system.service.gov.uk/components/error-message/
+- GOV.UK Design System, Error summary component: https://design-system.service.gov.uk/components/error-summary/
+- APG (widgets only): n/a - no widget
+- Deque rule page(s): n/a - no rule fired
