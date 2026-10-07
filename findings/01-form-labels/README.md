@@ -1,10 +1,14 @@
 # 01 — Form labels
 
 **Finding class:** Inputs whose text labels are visually present in placeholders or nearby text blocks but are not programmatically associated with the controls.
+
 **WCAG 2.1 AA SC:** 1.3.1 Info and Relationships; 3.3.2 Labels or Instructions; 4.1.2 Name, Role, Value
+
 **Root cause:** The message field control reaches the accessibility tree with an empty name because that field's only label is a nearby unassociated bare text node. The phone field control reaches the accessibility tree with the hint text as its name because that field's only label is the last-resort placeholder text that the browser falls back to, but the hint text alone does not sufficiently describe the purpose of the field, and the field's only visible label disappears when the user types.
+
 **Fix:** A `<label for=...>` for each field ensures that the same label text that is visually present on the page is also computed by the browser and properly associated with the correct elements in the accessibility tree. The format hint is moved out of the phone field and into a separate element that is referenced by `aria-describedby` so that key information about the expected format of the phone number is announced after the field's name and persists once the field has a value.
-**Sample styling:** Presentation only: layout, colors, fonts, field sizing, and a `<fieldset>` border reset. The CSS is identical in the before and after samples; the diff intentionally carries only the markup fixes. The `placeholder` styling is used for legibility only and is preserved across the diff because it is not the mechanism under test.
+
+**Sample styling:** Presentation only: layout, colors, fonts, field sizing, and a `<fieldset>` border reset. The CSS is identical in the Before and After samples; the diff intentionally carries only the markup fixes. The `placeholder` styling is used for legibility only and is preserved across the diff because it is not the mechanism under test. The convention is in [Sample page styles](../../shared/README.md#sample-page-styles).
 
 ## Verification
 | Check          | Before                                                                                                                                                                                                  | After                                                                                                                                                                                                      |
