@@ -2,7 +2,7 @@
 
 The shell is `index.html`, `compare.html`, and the files in this folder. It gets the same three checks as every finding class and must pass them before it is deployed, so this page records what was checked and how.
 
-Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10. The completed checklist, one row per check, is in [shell-test-record.md](shell-test-record.md).
+Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10. The index tab-stop count and checklist rows P2, P3, and N14 were rechecked against the current catalog in Firefox 157.0, with the same axe DevTools, NVDA, and Windows versions, on 10/7/2026, and G3 on 10/6/2026. The completed checklist, one row per check, is in [shell-test-record.md](shell-test-record.md).
 
 ## Coverage
 - **axe DevTools** (Firefox add-on): full-page scan, which includes the sample-page iframes. `index.html` in light and dark schemes; `compare.html?f=form-labels` in light and dark schemes, side by side and serial; a compare page with a diff loaded, in light and dark schemes; the not-found notice at `compare.html?f=nope`, in light and dark schemes. Ten scans.
@@ -18,7 +18,7 @@ Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows
 | Check           | index.html                                                                                                                | compare.html                                                                                                            |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | axe DevTools    | issues: 0 (2 scans)                                                                                                       | issues: 0 (8 scans)                                                                                                     |
-| Keyboard only   | stops: 21; ring: visible; trap: none                                                                                      | stops: 11 (9 controls plus the two iframes); ring: visible; trap: none                                                  |
+| Keyboard only   | stops: 13; ring: visible; trap: none                                                                                      | stops: 11 (9 controls plus the two iframes); ring: visible; trap: none                                                  |
 | NVDA + Firefox  | catalog link: "Compare  column 3  visited  link    Compare  – Form labels"                                                | toggle: "toggle button  not pressed  Serial view (one column)" → "pressed"                                              |
 | Reflow and zoom | 320px: no sideways scroll outside the table box, no clipping; 200%: no sideways scroll outside the table box, no clipping | 320px: no sideways scroll outside the diff box, no clipping; 200%: no sideways scroll outside the diff box, no clipping |
 | Forced colours  | rings, skip link, table edges visible                                                                                     | rings, skip link, toggle states, pane edges, diff edges, iframe text visible                                            |

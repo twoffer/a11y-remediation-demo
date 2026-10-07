@@ -8,11 +8,10 @@
  * and are never renamed).
  *
  * The order is remediation priority, not folder order and not frequency,
- * which is why 09 sits second and 02 sits below it. README.md, "What this
- * is", states the rule the order follows. Classes appear here once they
- * are scaffolded, so the list grows in build order and reads in priority
- * order; the gaps are classes not yet scaffolded, not classes that were
- * cut.
+ * which is why 09 sits second. README.md, "What this is", states the rule
+ * the order follows. The catalog lists only the classes the demo covers,
+ * the first two in that order; folders under findings/ with no entry here
+ * are not in the catalog.
  *
  * Fields:
  *   slug        query-string key used by compare.html?f=<slug>
@@ -54,25 +53,6 @@ window.A11Y_DEMO = {
         { id: "1.4.1", name: "Use of Color" }
       ],
       clientNote: "With errors in more than one field, per-field live regions can announce at once, so on a failed submit, move focus to an error summary that links to each invalid field."
-    },
-    {
-      slug: "contrast",
-      folder: "02-contrast",
-      title: "Contrast",
-      sc: [
-        { id: "1.4.3", name: "Contrast (Minimum)" },
-        { id: "1.4.11", name: "Non-text Contrast" }
-      ],
-      clientNote: ""
-    },
-    {
-      slug: "image-alt",
-      folder: "03-image-alt",
-      title: "Image alt",
-      sc: [
-        { id: "1.1.1", name: "Non-text Content" }
-      ],
-      clientNote: ""
     }
   ]
 };

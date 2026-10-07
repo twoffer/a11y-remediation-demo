@@ -2,7 +2,7 @@
 
 The completed checklist behind the results table in [README.md](README.md). Each row is one check that was run against the shell; the "Coverage" section of that README summarises them.
 
-Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10.
+Checked on 9/22/2026: Firefox 155.0.1, axe DevTools 4.10.3, NVDA 2026.2, Windows 10. The index tab-stop count and checklist rows P2, P3, and N14 were rechecked against the current catalog in Firefox 157.0, with the same axe DevTools, NVDA, and Windows versions, on 10/7/2026, and G3 on 10/6/2026.
 
 An `e.g.` in a Confirm cell shows the *shape* of what a screen reader announces, not captured output — it says what to listen for, and is written in ordinary prose. The verbatim transcripts are in the Results table in [README.md](README.md), quoted from NVDA's Speech Viewer with its own word order and double-space token separators intact. Nothing in this file is a transcript, so nothing in it should be read as one.
 
@@ -12,14 +12,13 @@ An `e.g.` in a Confirm cell shows the *shape* of what a screen reader announces,
 | S1  | Date, Firefox, axe DevTools, NVDA, and Windows versions noted for `shared/README.md` | [x]    |
 
 ## Pages and states (localhost)
-| #   | URL                          | Confirm                                            | Result |
-| --- | ---------------------------- | -------------------------------------------------- | ------ |
-| P1  | `index.html`                 | catalog table lists every class in the manifest    | [x]    |
-| P2  | `compare.html?f=form-labels` | both frames load; empty diff shows "No diff yet."  | [x]    |
-| P3  | `compare.html?f=contrast`    | same shell, contrast entry                         | [x]    |
-| P4  | `compare.html?f=image-alt`   | same shell, image-alt entry                        | [x]    |
-| P5  | `compare.html`               | missing-key notice with a link back to the catalog | [x]    |
-| P6  | `compare.html?f=nope`        | unknown-key notice with a link back to the catalog | [x]    |
+| #   | URL                            | Confirm                                                                              | Result |
+| --- | ------------------------------ | ------------------------------------------------------------------------------------ | ------ |
+| P1  | `index.html`                   | catalog table lists every class in the manifest                                      | [x]    |
+| P2  | `compare.html?f=form-labels`   | both frames load; with `diff.txt` temporarily emptied, the diff shows "No diff yet." | [x]    |
+| P3  | `compare.html?f=errors-status` | same shell, errors-status entry; both frames load                                    | [x]    |
+| P4  | `compare.html`                 | missing-key notice with a link back to the catalog                                   | [x]    |
+| P5  | `compare.html?f=nope`          | unknown-key notice with a link back to the catalog                                   | [x]    |
 
 ## axe DevTools (ten scans)
 | #   | Page / state                               | Light | Dark |
@@ -44,24 +43,24 @@ An `e.g.` in a Confirm cell shows the *shape* of what a screen reader announces,
 | K9  | compare page with a diff loaded | diff box is one more stop with a visible ring; Up and Down scroll it; Tab leaves it                                                | [x]   | [x]  |
 
 ## NVDA + Firefox (either scheme)
-| #   | Page / state                    | Confirm                                                                                                                                                                                                                                                          | Result |
-| --- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| N1  | `index.html`                    | on load and with Insert+T, reads the title "Catalog – Accessibility remediation demo"                                                                                                                                                                            | [x]    |
-| N2  | `index.html`                    | Insert+F7 → Landmarks: banner, "Site" navigation, main                                                                                                                                                                                                           | [x]    |
-| N3  | `index.html`                    | Insert+F7 → Headings: one H1, "Finding classes"                                                                                                                                                                                                                  | [x]    |
-| N4  | `index.html`                    | Insert+F7 → Links: every name unique, e.g. "Compare – Form labels"                                                                                                                                                                                               | [x]    |
-| N5  | `index.html`                    | skip link reads "Skip to main content, link"; Enter announces the main landmark and reads on from the H1; Insert+Up confirms the browse caret is on the H1, so Down arrow moves to the next line                                                                 | [x]    |
-| N6  | `index.html`                    | T reaches the table; Ctrl+Alt+Right along a row announces the column header and column number, e.g. "Compare, column 3, Compare – Form labels, link"; Ctrl+Alt+Down announces the row header and row number, e.g. "Form labels, row 2", confirming `scope="row"` | [x]    |
-| N7  | `compare.html?f=form-labels`    | on load and with Insert+T, the title names the class and the site                                                                                                                                                                                                | [x]    |
-| N8  | `compare.html?f=form-labels`    | Insert+F7 → Landmarks: banner, "Site" navigation, main, and the Before, After, and Client note regions                                                                                                                                                           | [x]    |
-| N9  | `compare.html?f=form-labels`    | Insert+F7 → Headings: one H1, then H2s Before, After, Diff, Client note in order                                                                                                                                                                                 | [x]    |
-| N10 | `compare.html?f=form-labels`    | Insert+F7 → Links and Buttons: every name unique                                                                                                                                                                                                                 | [x]    |
-| N11 | `compare.html?f=form-labels`    | skip link reads "Skip to main content, link"; Enter announces the main landmark and reads on from the H1; Insert+Up confirms the browse caret is on the H1, so Down arrow moves to the next line                                                                 | [x]    |
-| N12 | `compare.html?f=form-labels`    | toggle reads "Serial view (one column), toggle button, not pressed"; Space → "pressed"; Space again → "not pressed"                                                                                                                                              | [x]    |
-| N13 | `compare.html?f=form-labels`    | each iframe announces its title, e.g. "Before: Form labels sample page, frame"; Down arrow reads into the sample page                                                                                                                                            | [x]    |
-| N14 | `compare.html?f=form-labels`    | empty diff reads "No diff yet."                                                                                                                                                                                                                                  | [x]    |
-| N15 | compare page with a diff loaded | Landmarks adds a "Diff" region; it announces "Diff, region"; Down arrow reads it one line at a time                                                                                                                                                              | [x]    |
-| N16 | both pages                      | Speech Viewer lines copied: a catalog link on the index; the toggle before and after pressing                                                                                                                                                                    | [x]    |
+| #   | Page / state                                                 | Confirm                                                                                                                                                                                                                                                          | Result |
+| --- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| N1  | `index.html`                                                 | on load and with Insert+T, reads the title "Catalog – Accessibility remediation demo"                                                                                                                                                                            | [x]    |
+| N2  | `index.html`                                                 | Insert+F7 → Landmarks: banner, "Site" navigation, main                                                                                                                                                                                                           | [x]    |
+| N3  | `index.html`                                                 | Insert+F7 → Headings: one H1, "Finding classes"                                                                                                                                                                                                                  | [x]    |
+| N4  | `index.html`                                                 | Insert+F7 → Links: every name unique, e.g. "Compare – Form labels"                                                                                                                                                                                               | [x]    |
+| N5  | `index.html`                                                 | skip link reads "Skip to main content, link"; Enter announces the main landmark and reads on from the H1; Insert+Up confirms the browse caret is on the H1, so Down arrow moves to the next line                                                                 | [x]    |
+| N6  | `index.html`                                                 | T reaches the table; Ctrl+Alt+Right along a row announces the column header and column number, e.g. "Compare, column 3, Compare – Form labels, link"; Ctrl+Alt+Down announces the row header and row number, e.g. "Form labels, row 2", confirming `scope="row"` | [x]    |
+| N7  | `compare.html?f=form-labels`                                 | on load and with Insert+T, the title names the class and the site                                                                                                                                                                                                | [x]    |
+| N8  | `compare.html?f=form-labels`                                 | Insert+F7 → Landmarks: banner, "Site" navigation, main, and the Before, After, and Client note regions                                                                                                                                                           | [x]    |
+| N9  | `compare.html?f=form-labels`                                 | Insert+F7 → Headings: one H1, then H2s Before, After, Diff, Client note in order                                                                                                                                                                                 | [x]    |
+| N10 | `compare.html?f=form-labels`                                 | Insert+F7 → Links and Buttons: every name unique                                                                                                                                                                                                                 | [x]    |
+| N11 | `compare.html?f=form-labels`                                 | skip link reads "Skip to main content, link"; Enter announces the main landmark and reads on from the H1; Insert+Up confirms the browse caret is on the H1, so Down arrow moves to the next line                                                                 | [x]    |
+| N12 | `compare.html?f=form-labels`                                 | toggle reads "Serial view (one column), toggle button, not pressed"; Space → "pressed"; Space again → "not pressed"                                                                                                                                              | [x]    |
+| N13 | `compare.html?f=form-labels`                                 | each iframe announces its title, e.g. "Before: Form labels sample page, frame"; Down arrow reads into the sample page                                                                                                                                            | [x]    |
+| N14 | `compare.html?f=form-labels`, `diff.txt` temporarily emptied | empty diff reads "No diff yet."                                                                                                                                                                                                                                  | [x]    |
+| N15 | compare page with a diff loaded                              | Landmarks adds a "Diff" region; it announces "Diff, region"; Down arrow reads it one line at a time                                                                                                                                                              | [x]    |
+| N16 | both pages                                                   | Speech Viewer lines copied: a catalog link on the index; the toggle before and after pressing                                                                                                                                                                    | [x]    |
 
 ## Reflow and zoom (either scheme)
 | #   | Page / state                                                | Confirm                                                           | Result |
@@ -96,9 +95,9 @@ Accessibility panel → Check for issues → Contrast reports nothing.
 F7 is the only check run in Chrome, on Chrome 152.0.7977.84. Every other row in this record was checked in Firefox only.
 
 ## GitHub Pages (after committing)
-| #   | URL                                                   | Confirm                                                            | Result |
-| --- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------ |
-| G1  | `index.html`                                          | loads styled; every catalog link (compare, before, after) resolves; the intro paragraph's repository README link resolves to the README's "What this is" section | [x]    |
-| G2  | `compare.html?f=form-labels`                          | frames, README link, and diff load                                 | [x]    |
-| G3  | `compare.html?f=contrast`, `compare.html?f=image-alt` | frames load                                                        | [x]    |
-| G4  | `compare.html`, `compare.html?f=nope`                 | notices show; the catalog link resolves                            | [x]    |
+| #   | URL                                   | Confirm                                                                                                                                                          | Result |
+| --- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| G1  | `index.html`                          | loads styled; every catalog link (compare, before, after) resolves; the intro paragraph's repository README link resolves to the README's "What this is" section | [x]    |
+| G2  | `compare.html?f=form-labels`          | frames, README link, and diff load                                                                                                                               | [x]    |
+| G3  | `compare.html?f=errors-status`        | frames load                                                                                                                                                      | [x]    |
+| G4  | `compare.html`, `compare.html?f=nope` | notices show; the catalog link resolves                                                                                                                          | [x]    |

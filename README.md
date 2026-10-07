@@ -6,9 +6,11 @@ Live site: https://twoffer.github.io/a11y-remediation-demo/
 
 ## What this is
 
-Each finding class reproduces one *class* of failure that web accessibility audits commonly flag, on a small sample page written for this demo, and then shows the hand-written fix. Most of the classes are the categories reported most often in the [WebAIM Million](https://webaim.org/projects/million/), a yearly survey of the top one million home pages; two more were added from the findings of a real audit, and one WebAIM category the audit did not raise was dropped.
+Each finding class reproduces one *class* of failure that web accessibility audits commonly flag, on a small sample page written for this demo, and then shows the hand-written fix. The classes are drawn from a wider set. Most of that set is the categories reported most often in the [WebAIM Million](https://webaim.org/projects/million/), a yearly survey of the top one million home pages; two more were added from the findings of a real audit, and one WebAIM category the audit did not raise was dropped.
 
-The catalog order is remediation priority, not frequency. It follows the severity ranking that the real audit gave to its findings, with one class raised above more severe ones because its share of the findings was large and the failures in it were not borderline. Where a class sits is therefore a judgement about priority fix ordering, and the demo says so rather than implying the ranking is the exact one given by the audit. The catalog grows as each class is written, so it does not yet show every class in the set.
+The set is ordered by remediation priority, not frequency. The order follows the severity ranking that the real audit gave to its findings, with one class raised above more severe ones because its share of the findings was large and the failures in it were not borderline. Where a class sits is therefore a judgement about priority fix ordering, and the demo says so rather than implying the ranking is the exact one given by the audit.
+
+The demo covers the first two classes in that order: form labels (`01-form-labels`) and errors and status messages (`09-errors-status`). The rest of the set is not demonstrated; any class added later takes the next place in the same order. Folder numbers are stable identifiers rather than positions in the order, which is why the second class is `09`.
 
 - The sample pages are synthetic. They were written for this demo and do not quote, copy, or resemble any real site.
 - The fixes are hand-written.
@@ -23,7 +25,7 @@ Each class lives in one folder under `findings/` — for example, `findings/01-f
 3. **diff.txt** is the plain-text `git diff` between before and after.
 4. **README.md** records the finding class, the WCAG criteria, the root cause, the fix, the three verification results (axe DevTools, keyboard only, NVDA + Firefox), a one-line client note, and a reading log.
 
-The catalog at `index.html` lists every class. `compare.html?f=<slug>` shows before and after side by side, with a toggle to a one-column serial view, followed by the diff and the client note.
+The catalog at `index.html` lists the demonstrated classes in priority order. `compare.html?f=<slug>` shows before and after side by side, with a toggle to a one-column serial view, followed by the diff and the client note.
 
 ## Running it locally
 
